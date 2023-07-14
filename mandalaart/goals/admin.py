@@ -1,6 +1,7 @@
 from django.contrib import admin
-from . import models
+from .models import Plan, SubGoal, WayGoal, Comment
 
-admin.site.register(models.Plan)
-admin.site.register(models.SubGoal)
-admin.site.register(models.WayGoal)
+admin.site.register(Plan)
+admin.site.register(SubGoal)
+admin.site.register(WayGoal)
+admin.site.register(Comment)
