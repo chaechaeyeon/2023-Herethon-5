@@ -32,4 +32,17 @@
             console.error('Failed to copy URL to clipboard:', err);
         });
     }
-</script>
+</script><button onclick="captureAndDownload()">Save as PNG</button>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        function captureAndDownload() {
+            html2canvas(document.body).then(function(canvas) {
+                // Convert canvas to PNG and download it
+                const downloadLink = document.createElement('a');
+                downloadLink.href = canvas.toDataURL('image/png');
+                downloadLink.download = 'page.png';
+                downloadLink.click();
+            });
+        }
+    </script>
