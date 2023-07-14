@@ -158,7 +158,7 @@ def comment(request, plan_id):
             form = CommentForm()
 
     return render(
-        request, "comment.html", {"plan": plan, "comments": comments, "form": form}
+        request, "goalComment.html", {"plan": plan, "comments": comments, "form": form}
     )
 
 
