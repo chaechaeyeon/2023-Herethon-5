@@ -21,3 +21,14 @@
 </table>
 
 <a href="{% url 'goal_edit' plan_id=plan.id %}">목표 수정하기</a><br>
+<button onclick="copyUrl()">Copy URL</button>
+<script>
+    function copyUrl() {
+        var url = window.location.href;
+        navigator.clipboard.writeText(url).then(function() {
+            alert('URL copied to clipboard!');
+        }, function(err) {
+            console.error('Failed to copy URL to clipboard:', err);
+        });
+    }
+</script>
