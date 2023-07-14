@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sub Goal Input</title>
+</head>
+<body>
+    <h1>세부 목표 입력</h1>
+    <form method="post" action="{% url 'sub_goal_input' plan_id=plan_id %}">
+        {% csrf_token %}
+        <div>
+            {% for i in '12345678' %}
+                {% with sub_goal_obj=sub_goals.i %}
+                    <input type="text" name="sub_goal{{ i }}" placeholder="목표 입력하기"><br>
+                {% endwith %}
+            {% endfor %}
+        </div>
+        <input type="submit" value="Next">
+    </form>
+</body>
+</html>
