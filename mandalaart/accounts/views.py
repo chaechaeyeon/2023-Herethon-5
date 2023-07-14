@@ -25,7 +25,7 @@ def login(request) :
         if user is not None:
             auth.login(request, user)
             print('로그인 성공')
-            return render(request, 'happy.html') 
+            return render(request, 'mainmanadal.html')
         else: 
             return render(request, 'bad_login.html')
     else:
@@ -34,4 +34,4 @@ def login(request) :
 #로그아웃
 def logout(request):
     auth.logout(request)
-    return render(request, 'happy.html')
+    return render(request, 'login.html')
