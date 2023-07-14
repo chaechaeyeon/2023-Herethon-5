@@ -58,15 +58,13 @@
         margin-bottom: 50px;
       }
 
-      #maingoal {
+      #id_main_goal {
         width: 280px;
         height: 32px;
         padding: 3px 51px;
-        position: relative;
-        top: 130px;
+        margin: auto;
         border-radius: 4px;
         background: #fff;
-
         color: rgba(59, 110, 55, 0.7);
         text-align: center;
         font-family: Noto Sans;
@@ -131,11 +129,12 @@
       style="width: 300px; top: -400px"
     /> {% endcomment %}
 
+    <!--css 완료-->
     <form method="post" action="{% url 'main_goal_input' %}">
       {% csrf_token %}
-      {{ form.main_goal }}
+      <div style="position:relative; top:-400px; left:16px">{{ form.main_goal }}</div>
       <button type="submit" style="background: none; border: none;">
-        <img src="{% static 'img/inputbtn2.png' %}" alt="Submit" style="width: 300px; position: relative; top: -400px">
+        <img src="{% static 'img/inputbtn2.png' %}" alt="Submit" style="width: 300px; position: relative; top:-380px">
       </button>
     </form>
     
