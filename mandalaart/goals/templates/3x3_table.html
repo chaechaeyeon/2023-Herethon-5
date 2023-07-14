@@ -21,6 +21,7 @@
 </table>
 
 <a href="{% url 'goal_edit' plan_id=plan.id %}">목표 수정하기</a><br>
+<a href="{% url 'comment' plan_id=plan.id %}">댓글 쓰기</a><br>
 <button onclick="copyUrl()">Copy URL</button>
 <script>
     function copyUrl() {
