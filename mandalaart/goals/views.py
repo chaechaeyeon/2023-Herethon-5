@@ -90,7 +90,7 @@ def goal_edit(request, plan_id):
 
     return render(
         request,
-        "goal_edit.html",
+        "goalUpdate.html",
         {"sub_goals": sub_goals, "main_goal": plan.main_goal, "plan_id": plan_id},
     )
 
