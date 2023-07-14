@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>join</title>
+    <style>
+      #container {
+        position: relative;
+        width: 100%;
+        max-width: 1280px;
+        text-align: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0 auto;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      input {
+        margin-bottom: 15px;
+        max-width: 280px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 1px solid #e5e7eb;
+        background: #fff;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        width: 400px;
+      }
+      @media (min-width: 768px) {
+        /* Styles for desktop */
+        input {
+          margin: 5px auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <img
+        src="../images/2023herethon5.png"
+        style="width: 110px; margin-bottom: 10px"
+      />
+      <img
+        src="../images/Make your own Mandalaart 🌟.png"
+        style="width: 300px; margin-bottom: 45px"
+      />
+      <input type="text" id="name" placeholder="Name" />
+      <input type="text" id="id_email" placeholder="E-mail address" />
+      <input type="password" id="pw" placeholder="Password" />
+      <input type="password" id="confirmpw" placeholder="Confirm Password" />
+      <div id="error-message" class="error-message"></div>
+      <img
+        src="../images/joinbtn.png"
+        style="width: 300px; margin-top: 15px"
+        onclick="successJoin()"
+      />
+    </div>
+    <script src="../js/join.js"></script>
+  </body>
+</html>
