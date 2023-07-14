@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -47,26 +48,16 @@
   <body>
     <div id="container">
       <img
-        src="../images/2023herethon5.png"
-        style="
-          width: 110px;
-          margin-bottom: 10px;
-          opacity: 0.6;
-          background: #fff;
-        "
-      />
+      src="{%static 'img/2023herethon5.png'%}"
+      style="width: 110px; margin-bottom: 10px"
+    />
+    <img
+      src="{%static 'img/Make your own Mandalaart 🌟.png'%}"
+      style="width: 300px; margin-bottom: 45px"
+    />
+      <img src="{% static 'img/Rectangle 4.png' %}" style="width: 360px" />
       <img
-        src="../images/Make your own Mandalaart 🌟.png"
-        style="
-          width: 300px;
-          margin-bottom: 45px;
-          opacity: 0.6;
-          background: #fff;
-        "
-      />
-      <img src="../images/Rectangle 4.png" style="width: 360px" />
-      <img
-        src="../images/check icon.png"
+        src="{% static 'img/check icon.png'%}"
         style="position: relative; top: -180px; width: 50px"
       />
       <div
@@ -103,7 +94,7 @@
         함께 만다라트 만들러 가볼까요?
       </div>
       <img
-        src="../images/Group 11.png"
+        src="{% static 'img/Group 11.png' %}"
         style="width: 360px; margin-top: -100px"
         onclick="gotoLogin()"
       />
@@ -123,7 +114,8 @@
         "
         onclick="gotoLogin()"
       >
-        로그인하기
+      <a href="{% url 'accounts:login' %}">
+        로그인하기 </a>
       </div>
       <input
         type="password"
@@ -132,10 +124,10 @@
         style="opacity: 0.6; background: #fff"
       />
       <img
-        src="../images/joinbtn.png"
+        src="{% static 'img/joinbtn.png'%}"
         style="width: 300px; margin-top: 15px; opacity: 0.6; background: #fff"
       />
     </div>
-    <script src="../js/join.js"></script>
+    <script src="{% static 'js/join.js' %}"></script>
   </body>
 </html>

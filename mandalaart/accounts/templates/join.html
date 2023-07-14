@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,25 +46,31 @@
     </style>
   </head>
   <body>
+    
+    <form action="" method="POST">
+      {% csrf_token %}
+
     <div id="container">
       <img
-        src="../images/2023herethon5.png"
-        style="width: 110px; margin-bottom: 10px"
-      />
-      <img
-        src="../images/Make your own Mandalaart 🌟.png"
-        style="width: 300px; margin-bottom: 45px"
-      />
-      <input type="text" id="name" placeholder="Name" />
-      <input type="text" id="id_email" placeholder="E-mail address" />
-      <input type="password" id="pw" placeholder="Password" />
-      <input type="password" id="confirmpw" placeholder="Confirm Password" />
+      src="{%static 'img/2023herethon5.png'%}"
+      style="width: 110px; margin-bottom: 10px"
+    />
+    <img
+      src="{%static 'img/Make your own Mandalaart 🌟.png'%}"
+      style="width: 300px; margin-bottom: 45px"
+    />
+      <input type="text" id="name" name="first_name" placeholder="Name" />
+      <input type="text" id="id_email" name="username" placeholder="E-mail address" />
+      <input type="password" id="pw"name="password1" placeholder="Password" />
+      <input type="password" id="confirmpw" name="password2" placeholder="Confirm Password" />
       <div id="error-message" class="error-message"></div>
+      <button type="submit"> 
       <img
-        src="../images/joinbtn.png"
+        src="{% static 'img/joinbtn.png'%}"
         style="width: 300px; margin-top: 15px"
         onclick="successJoin()"
-      />
+      /></button>
+    </form>
     </div>
     <script src="../js/join.js"></script>
   </body>

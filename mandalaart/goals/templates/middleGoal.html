@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -75,19 +76,22 @@
     </style>
   </head>
   <body>
+    <form method="post" action="{% url 'sub_goal_input' plan_id=plan_id %}">
+      {% csrf_token %}
     <div id="container">
+      
       <img
-        src="../images/Let’s make Mandalart.png"
+        src="{%static 'img/Let’s make Mandalart.png' %}"
         style="width: 300px; margin-bottom: 20px"
       />
       <div id="example">예시 보러 가기</div>
     </div>
     <img
-      src="../images/Group 100.png"
+      src="{% static 'img/Group 100.png' %}"
       style="max-width: 360px; position: absolute; bottom: -13px"
     />
     <img
-      src="../images/Group 18.png"
+      src="{% static 'img/Group 18.png' %}"
       style="
         position: relative;
         left: 100px;
@@ -96,6 +100,8 @@
         margin-top: 30px;
       "
     />
+    <form method="post" action="{% url 'sub_goal_input' plan_id=plan_id %}">
+      {% csrf_token %}
     <input
       id="maingoal"
       style="
@@ -159,9 +165,10 @@
       style="width: 280px; height: 30px; position: relative; top: 90px"
     />
     <img
-      src="../images/inputbtn2.png"
+      src="{% static 'img/inputbtn2.png' %}"
       style="width: 290px; position: relative; top: 90px"
     />
-    <script src="../js/middleGoal.js"></script>
+    <script src="{% static 'js/middleGoal.js' %}"></script>
+    </form>
   </body>
 </html>
