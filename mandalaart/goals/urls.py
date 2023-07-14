@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.main_page, name="main_page"),
+    path("examplePage", views.examplePage, name="examplePage"),
     path("main_goal_input/", views.main_goal_input, name="main_goal_input"),
     path("sub_goal_input/<int:plan_id>/", views.sub_goal_input, name="sub_goal_input"),
     path("goal_edit/<int:plan_id>/", views.goal_edit, name="goal_edit"),
