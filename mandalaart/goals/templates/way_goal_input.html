@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Way Goal Input</title>
+    <title>Way Goal 입력</title>
 </head>
 <body>
-    <h1>세부 목표 입력</h1>
-    <form method="post" action="{% url 'way_goal_input' plan_id=plan_id sub_goal_id=sub_goal_id %}">
+    <h1>Way Goal 입력</h1>
+    <h3>서브 목표: {{sub_goal.id}} {{ sub_goal.sub_goal }}</h3>
+
+    <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Save">
+        {{ form.way_goal.label_tag }} {{ form.way_goal }}
+        {{ form.way_fre.label_tag }} {{ form.way_fre }}
+        {{ form.way_memo.label_tag }} {{ form.way_memo }}
+        <input type="submit" value="저장">
     </form>
 
-    <h2>Way Goals:</h2>
+    <h3>Way Goals:</h3>
     <ul>
         {% for way_goal in way_goals %}
-            <li>{{ way_goal.way_goal }}</li>
+            <li>{{ way_goal.way_goal }} - {{ way_goal.way_fre }}회, {{ way_goal.way_memo }}</li>
         {% empty %}
-            <li>No way goals yet.</li>
+            <li>등록된 Way Goal이 없습니다.</li>
         {% endfor %}
     </ul>
 </body>

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
+import os
 from .forms import SignupForm
 
 
@@ -9,13 +10,16 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             new_user = form.save()
-            auth.login(request, new_user)
+            # auth.login(request, new_user)
             print("회원가입 성공")
-            return redirect("login")
+            return redirect("accounts:successJoin")
     else:
         form = SignupForm()
-    return render(request, "signup.html", {"form": form})
-
+    return render(request, "join.html", {"form": form})
+ 
+ #회원가입 성공 
+def successJoin(request):
+    return render(request,'successJoin.html')
 
 # 로그인
 def login(request):
@@ -27,7 +31,7 @@ def login(request):
         if user is not None:
             auth.login(request, user)
             print("로그인 성공")
-            return render(request, "mainmanadal.html")
+            return render(request, "maingoal.html")
         else:
             return render(request, "bad_login.html")
     else:

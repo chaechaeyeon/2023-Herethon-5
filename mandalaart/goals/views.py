@@ -2,6 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .forms import MainGoalForm, SubGoalForm, WayGoalForm, CommentForm
 from .models import Plan, SubGoal, WayGoal, Comment
+from .forms import MainGoalForm, SubGoalForm, WayGoalForm, WayGoalFormSet
+from django import forms
+from django.forms import formset_factory
 import os
 from django.conf import settings
 from django.http import HttpResponse
@@ -12,7 +15,7 @@ import pdfkit  # `pdfkit` 라이브러리를 설치
 # 만다라트 리스트 조회
 def main_page(request):
     plans = Plan.objects.all()
-    return render(request, "goal_list.html", {"plans": plans})
+    return render(request, "mainGoal.html", {"plans": plans})
 
 
 # 메인 목표 입력
@@ -25,7 +28,7 @@ def main_goal_input(request):
             return redirect("sub_goal_input", plan_id=plan.id)
     else:
         form = MainGoalForm()
-    return render(request, "main_goal_input.html", {"form": form})
+    return render(request, "mainGoal.html", {"form": form})
 
 
 # 서브 목표 입력
@@ -55,7 +58,7 @@ def sub_goal_input(request, plan_id):
         sub_goal_initial_list = list(sub_goal_initial_values)[:8]
         form = SubGoalForm(initial={"sub_goals": sub_goal_initial_list})
 
-    return render(request, "sub_goal_input.html", {"form": form, "plan_id": plan_id})
+    return render(request, "middleGoal.html", {"form": form, "plan_id": plan_id, "main_goal": plan.main_goal})
 
 
 # 메인 목표 및 서브 목표 수정
@@ -87,7 +90,7 @@ def goal_edit(request, plan_id):
 
     return render(
         request,
-        "goal_edit.html",
+        "goalUpdate.html",
         {"sub_goals": sub_goals, "main_goal": plan.main_goal, "plan_id": plan_id},
     )
 
@@ -102,41 +105,40 @@ def three_by_three_table(request, plan_id):
 
     return render(
         request,
-        "3x3_table.html",
+        "here.html",
         {"plan": plan, "sub_goal_rows": sub_goal_rows, "main_goal": plan.main_goal},
     )
 
 
-# 세부 목표 입력
 def way_goal_input(request, plan_id, sub_goal_id):
     plan = Plan.objects.get(pk=plan_id)
-    sub_goal = get_object_or_404(SubGoal, pk=sub_goal_id)
+    sub_goal = SubGoal.objects.get(pk=sub_goal_id)
 
     if request.method == "POST":
         form = WayGoalForm(request.POST)
         if form.is_valid():
             way_goal = form.cleaned_data["way_goal"]
-            WayGoal.objects.create(sub=sub_goal, way_goal=way_goal)
-            return redirect(
-                reverse(
-                    "way_goal_input",
-                    kwargs={"plan_id": plan_id, "sub_goal_id": sub_goal_id},
-                )
+            way_fre = form.cleaned_data["way_fre"]
+            way_memo = form.cleaned_data["way_memo"]
+            WayGoal.objects.create(
+                sub=sub_goal, way_goal=way_goal, way_fre=way_fre, way_memo=way_memo
             )
+            return redirect("way_goal_input", plan_id=plan_id, sub_goal_id=sub_goal_id)
     else:
         form = WayGoalForm()
 
-    way_goals = WayGoal.objects.filter(sub=sub_goal)
+    way_goals = WayGoal.objects.filter(sub=sub_goal).order_by("id")  # ID 기준으로 정렬
 
     return render(
         request,
-        "way_goal_input.html",
+        "detailGoal.html",
         {
             "form": form,
             "plan_id": plan_id,
             "sub_goal_id": sub_goal_id,
             "way_goals": way_goals,
-            "main_goal": plan.main_goal,
+            "sub_goal": sub_goal,
+            "plan": plan,
         },
     )
 
@@ -156,5 +158,38 @@ def comment(request, plan_id):
             form = CommentForm()
 
     return render(
-        request, "comment.html", {"plan": plan, "comments": comments, "form": form}
+        request, "goalComment.html", {"plan": plan, "comments": comments, "form": form}
     )
+
+
+def edit_way_goal(request, way_goal_id):
+    way_goal = WayGoal.objects.get(pk=way_goal_id)
+
+    if request.method == "POST":
+        form = WayGoalForm(request.POST)
+        if form.is_valid():
+            way_goal.way_goal = form.cleaned_data["way_goal"]
+            way_goal.way_fre = form.cleaned_data["way_fre"]
+            way_goal.way_memo = form.cleaned_data["way_memo"]
+            way_goal.save()
+            return redirect(
+                "way_goal_input",
+                plan_id=way_goal.sub.plan.id,
+                sub_goal_id=way_goal.sub.id,
+            )
+    else:
+        form = WayGoalForm(
+            initial={
+                "way_goal": way_goal.way_goal,
+                "way_fre": way_goal.way_fre,
+                "way_memo": way_goal.way_memo,
+            }
+        )
+
+    return render(
+        request, "edit_way_goal.html", {"form": form, "way_goal_id": way_goal_id}
+    )
+
+def examplePage(request):
+    
+    return render(request, "example.html")

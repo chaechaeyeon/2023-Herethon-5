@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", views.main_page, name="main_page"),
+    path("examplePage", views.examplePage, name="examplePage"),
     path("main_goal_input/", views.main_goal_input, name="main_goal_input"),
     path("sub_goal_input/<int:plan_id>/", views.sub_goal_input, name="sub_goal_input"),
     path("goal_edit/<int:plan_id>/", views.goal_edit, name="goal_edit"),
@@ -16,4 +17,5 @@ urlpatterns = [
         name="way_goal_input",
     ),
     path("3x3_table/<int:plan_id>/comment/", views.comment, name="comment"),
+    path("edit_way_goal/<int:way_goal_id>/", views.edit_way_goal, name="edit_way_goal"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
