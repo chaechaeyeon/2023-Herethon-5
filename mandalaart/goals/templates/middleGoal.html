@@ -116,6 +116,9 @@
       id="maingoalContainer"
       style="
         color: #fff;
+        background: #2f582c;
+        width: 280px;
+        height: 32px;
         text-align: center;
         font-family: Noto Sans;
         font-size: 13px;
@@ -124,6 +127,9 @@
         line-height: 20.308px; /* 156.213% */
         letter-spacing: -0.377px;
         border-style: hidden;
+        margin-bottom: 20px;
+        margin-top:-20px;
+        
       "
     >{{ main_goal }}</div>
     <form method="post" action="{% url 'sub_goal_input' plan_id=plan_id %}">
