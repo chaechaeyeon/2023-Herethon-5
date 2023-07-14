@@ -75,7 +75,7 @@
         width: 290px;
         position: relative;
         top: -470px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
       }
 
       input[type="text"] {
@@ -98,6 +98,11 @@
         font-style: normal;
         font-weight: 400;
         text-align: center;
+      }
+
+      button {
+        border: none;
+        background-color: #fff;
       }
 
     </style>
@@ -174,10 +179,32 @@
       </div>
     </div>
 
-    <img src="{% static 'img/Frame 14.png' %}" id="frame" /> <!-- 공유하기 -->
-    <img src="{% static 'img/Frame 12.png' %}" id="frame" />    <!-- 저장하기 -->
+    <button onclick="copyUrl()"><img src="{% static 'img/Frame 14.png' %}" id="frame" /> <!-- 공유하기 --></button>
+    <button onclick="captureAndDownload()"><img src="{% static 'img/Frame 12.png' %}" id="frame" />    <!-- 저장하기 --></button>
     <a href="{% url 'comment' plan_id=plan.id %}"><img src="{% static 'img/Frame 13.png' %}" id="frame" /></a><!-- 댓글쓰기 -->
     <script src="{% static 'js/here.js' %}"></script>
+    <script>
+      function copyUrl() {
+          var url = window.location.href;
+          navigator.clipboard.writeText(url).then(function() {
+              alert('URL copied to clipboard!');
+          }, function(err) {
+              console.error('Failed to copy URL to clipboard:', err);
+          });
+      }
+  </script>
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<script>
+    function captureAndDownload() {
+        html2canvas(document.body).then(function(canvas) {
+            // Convert canvas to PNG and download it
+            const downloadLink = document.createElement('a');
+            downloadLink.href = canvas.toDataURL('image/png');
+            downloadLink.download = 'page.png';
+            downloadLink.click();
+        });
+    }
+</script>
   </body>
 </html>
-C:\LEEKYUMIN\likelion\2023 여기톤\2023-Herethon-5\2023-Herethon-5\mandalaart\static\img\Frame 12.png
