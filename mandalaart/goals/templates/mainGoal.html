@@ -110,47 +110,47 @@
     </style>
   </head>
   <body>
-    <form method="post" action="{% url 'main_goal_input' %}">
-      {% csrf_token %}
     <div id="container">
       <img
-      src="{%static 'img/2023herethon5.png'%}"
-      style="width: 110px; margin-bottom: 10px"
-    />
-    <img
-      src="{%static 'img/Make your own Mandalaart 🌟.png'%}"
-      style="width: 300px; margin-bottom: 45px"
-    />
-      <img src="{%static 'img/설명 1.png' %}" style="width: 280px" />
-      <img src="{%static 'img/설명 2.png'%}" style="width: 280px" />
+        src="{% static 'img/Lets make Mandalart.png' %}"
+        style="width: 300px; margin-bottom: 20px"
+      />
+      <img
+        src="{% static 'img/What is a Mandalart_.png' %}"
+        style="width: 140px; margin-bottom: 25px"
+      />
+      <img src="{% static 'img/설명 1.png' %}" style="width: 280px" />
+      <img src="{% static 'img/설명 2.png' %}" style="width: 280px" />
       <div id="example">예시 보러 가기</div>
     </div>
-    <img
-      src="{%static 'img/Group 68.png' %}"
-      style="max-width: 360px; position: absolute; bottom: -13px"
-    />
-    <!-- <input
+    <img src="{% static 'img/Group 68.png' %}" style="max-width: 360px" />
+    {% comment %} <input
       type="text"
       id="maingoal"
       placeholder="목표 입력하기"
-      style="width: 300px"
-    /> -->
-    {{ form.as_p }}
-    <button type="submit" value="Next">
-    <img
-      src="{% static 'img/inputbtn2.png' %}"
-      style="width: 300px; position: relative; top: 130px"
-    /></button>
+      style="width: 300px; top: -400px"
+    /> {% endcomment %}
+
+    <form method="post" action="{% url 'main_goal_input' %}">
+      {% csrf_token %}
+      {{ form.main_goal }}
+      <button type="submit" style="background: none; border: none;">
+        <img src="{% static 'img/inputbtn2.png' %}" alt="Submit" style="width: 300px; position: relative; top: -400px">
+      </button>
     </form>
+    
+    {% comment %} <a href="{% url 'main_goal_input' %}"><img
+      src="{% static 'img/inputbtn2.png' %}"
+      style="width: 300px; position: relative; top: -400px"
+    /></a> {% endcomment %}
     <img
       src="{% static 'img/흠냐.png' %}"
-      style="width: 300px; position: relative; top: 160px"
+      style="width: 300px; position: relative; top: -350px"
     />
     <input id="friendsgoal" />
     <input id="friendsgoal" />
     <input id="friendsgoal" />
     <input id="friendsgoal" />
-    <script src="{% static 'js/mainGoal.js'%}"></script>
-  
+    <script src="{% static 'js/mainGoal.js' %}"></script>
   </body>
 </html>
