@@ -1,0 +1,23 @@
+<!-- 목표 확인 페이지-->
+
+<h2>{{ main_goal }}</h2>
+
+<table>
+    <tr>
+        <td><a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.0.0.id %}">{{ sub_goal_rows.0.0 }}</a></td>
+        <td><a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.0.1.id %}">{{ sub_goal_rows.0.1 }}</a></td>
+        <td><a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.0.2.id %}">{{ sub_goal_rows.0.2 }}</a></td>
+    </tr>
+    <tr>
+        <td><a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.1.0.id %}">{{ sub_goal_rows.1.0 }}</a></td>
+        <td>{{ main_goal }}</td>
+        <td><a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.1.1.id %}">{{ sub_goal_rows.1.1 }}</a></td>
+    </tr>
+    <tr>
+        <td><a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.1.2.id %}">{{ sub_goal_rows.1.2 }}</a></td>
+        <td><a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.2.0.id %}">{{ sub_goal_rows.2.0 }}</a></td>
+        <td><a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.2.1.id %}">{{ sub_goal_rows.2.1 }}</a></td>
+    </tr>
+</table>
+
+<a href="{% url 'goal_edit' plan_id=plan.id %}">목표 수정하기</a><br>

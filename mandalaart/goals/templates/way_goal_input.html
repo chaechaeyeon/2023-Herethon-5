@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Way Goal Input</title>
+</head>
+<body>
+    <h1>세부 목표 입력</h1>
+    <form method="post" action="{% url 'way_goal_input' plan_id=plan_id sub_goal_id=sub_goal_id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+
+    <h2>Way Goals:</h2>
+    <ul>
+        {% for way_goal in way_goals %}
+            <li>{{ way_goal.way_goal }}</li>
+        {% empty %}
+            <li>No way goals yet.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
