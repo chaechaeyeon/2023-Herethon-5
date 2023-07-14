@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from .forms import MainGoalForm, SubGoalForm, WayGoalForm, WayGoalFormSet
+from django import forms
 from .models import Plan, SubGoal, WayGoal
 import os
 from django.conf import settings
@@ -107,20 +108,35 @@ def three_by_three_table(request, plan_id):
     )
 
 
-# 세부 목표 입력
 def way_goal_input(request, plan_id, sub_goal_id):
     plan = Plan.objects.get(pk=plan_id)
     sub_goal = SubGoal.objects.get(pk=sub_goal_id)
 
-    if request.method == 'POST':
-        form = WayGoalForm(request.POST)
-        if form.is_valid():
-            way_goal = form.cleaned_data['way_goal']
-            WayGoal.objects.create(sub=sub_goal, way_goal=way_goal)
-            return redirect(reverse('way_goal_input', kwargs={'plan_id': plan_id, 'sub_goal_id': sub_goal_id}))
+    WayGoalFormSet = forms.formset_factory(WayGoalForm, extra=8)  # 수정: 8개의 WayGoal 입력 폼 생성
+
+    if request.method == "POST":
+        formset = WayGoalFormSet(request.POST)
+        if formset.is_valid():
+            for form in formset:
+                way_goal = form.cleaned_data["way_goal"]
+                way_fre = form.cleaned_data["way_fre"]
+                way_memo = form.cleaned_data["way_memo"]
+                WayGoal.objects.create(
+                    sub=sub_goal, way_goal=way_goal, way_fre=way_fre, way_memo=way_memo
+                )
+            return redirect("way_goal_input", plan_id=plan_id, sub_goal_id=sub_goal_id)
     else:
         formset = WayGoalFormSet()
 
-    way_goals = WayGoal.objects.filter(sub=sub_goal)  # WayGoal 리스트 조회
+    way_goals = WayGoal.objects.filter(sub=sub_goal)
 
-    return render(request, 'way_goal_input.html', {'form': form, 'plan_id': plan_id, 'sub_goal_id': sub_goal_id, 'way_goals': way_goals, 'main_goal': plan.main_goal})
+    return render(
+        request,
+        "way_goal_input.html",
+        {
+            "formset": formset,
+            "plan_id": plan_id,
+            "sub_goal_id": sub_goal_id,
+            "way_goals": way_goals,
+        },
+    )

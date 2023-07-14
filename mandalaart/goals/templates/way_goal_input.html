@@ -7,23 +7,19 @@
     <h1>세부 목표 입력</h1>
     <form method="post" action="{% url 'way_goal_input' plan_id=plan_id sub_goal_id=sub_goal_id %}">
         {% csrf_token %}
-        {{ formset.management_form }}
-    
-        {% for form in formset %}
+        
+        {% for i in '12345678' %}
             <div class="form-row">
-                {{ form.way_goal.errors }}
-                <label for="{{ form.way_goal.id_for_label }}">Way Goal:</label>
-                {{ form.way_goal }}
+                <label for="id_way_goal_{{ i }}">Way Goal:</label>
+                <textarea name="way_goal_{{ i }}" id="id_way_goal_{{ i }}"></textarea>
                 <br>
                 
-                {{ form.way_fre.errors }}
-                <label for="{{ form.way_fre.id_for_label }}">목표 달성 빈도:</label>
-                {{ form.way_fre }}
+                <label for="id_way_memo_{{ i }}">메모:</label>
+                <textarea name="way_memo_{{ i }}" id="id_way_memo_{{ i }}"></textarea>
                 <br>
                 
-                {{ form.way_memo.errors }}
-                <label for="{{ form.way_memo.id_for_label }}">메모:</label>
-                {{ form.way_memo }}
+                <label for="id_way_fre_{{ i }}">목표 달성 빈도:</label>
+                <input type="number" name="way_fre_{{ i }}" id="id_way_fre_{{ i }}">
             </div>
         {% endfor %}
     
@@ -31,20 +27,17 @@
     </form>
     
     <h2>Way Goals:</h2>
-    {% for sub_goal in sub_goals %}
-        <h3>{{ sub_goal.sub_goal }}</h3>
-        <ul>
-            {% for way_goal in sub_goal.waygoal_set.all %}
-                <li>
-                    {{ way_goal. }}
-                    <h4>{{ way_goal.way_goal }}</h4>
-                    {{ way_goal.way_memo }}
-                </li>
-            {% empty %}
-                <li>No way goals for this sub goal.</li>
-            {% endfor %}
-        </ul>
-    {% endfor %}
+    <ul>
+        {% for way_goal in way_goals %}
+            <div>
+                <h4>{{ way_goal.way_goal }}</h4>
+                <p>목표 달성 빈도: {% if way_goal.way_fre %}{{ way_goal.way_fre }}{% else %}N/A{% endif %}</p>
+                {{ way_goal.way_memo }}
+            </div>
+        {% endfor %}
+    </ul>
+    
+
     
     {% comment %} <form method="post" action="{% url 'way_goal_input' plan_id=plan_id sub_goal_id=sub_goal_id %}">
         {% csrf_token %}
