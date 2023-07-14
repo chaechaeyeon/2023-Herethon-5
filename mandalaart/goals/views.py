@@ -131,7 +131,7 @@ def way_goal_input(request, plan_id, sub_goal_id):
 
     return render(
         request,
-        "way_goal_input.html",
+        "detailGoal.html",
         {
             "form": form,
             "plan_id": plan_id,
