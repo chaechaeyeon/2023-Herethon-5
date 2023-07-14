@@ -25,7 +25,7 @@ def login(request) :
         if user is not None:
             auth.login(request, user)
             print('로그인 성공')
-            return render(request, 'mainmanadal.html')
+            return render(request, 'goal_list.html')
         else: 
             return render(request, 'bad_login.html')
     else:
