@@ -25,7 +25,7 @@ def main_goal_input(request):
             return redirect("sub_goal_input", plan_id=plan.id)
     else:
         form = MainGoalForm()
-    return render(request, "main_goal_input.html", {"form": form})
+    return render(request, "mainGoal.html", {"form": form})
 
 
 # 서브 목표 입력
@@ -55,7 +55,7 @@ def sub_goal_input(request, plan_id):
         sub_goal_initial_list = list(sub_goal_initial_values)[:8]
         form = SubGoalForm(initial={"sub_goals": sub_goal_initial_list})
 
-    return render(request, "sub_goal_input.html", {"form": form, "plan_id": plan_id})
+    return render(request, "middleGoal.html", {"form": form, "plan_id": plan_id})
 
 
 # 메인 목표 및 서브 목표 수정

@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mainGoal</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 80px;
+      }
+
+      input {
+        margin-bottom: 15px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 1px solid #e5e7eb;
+        background: #fff;
+        padding: 5px 10px;
+        box-sizing: border-box;
+      }
+
+      input[type="text"]::placeholder {
+        color: rgba(59, 110, 55, 0.7);
+        text-align: center;
+        font-family: Noto Sans;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20.308px; /* 203.077% */
+        letter-spacing: -0.377px;
+      }
+
+      #example {
+        color: #000;
+        text-align: center;
+        font-family: Noto Sans;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 29.976px; /* 320% */
+        letter-spacing: -0.468px;
+        text-decoration-line: underline;
+        opacity: 0.6;
+        width: 300px;
+        margin-bottom: 50px;
+      }
+
+      #maingoal {
+        width: 280px;
+        height: 32px;
+        padding: 3px 51px;
+        position: relative;
+        top: 130px;
+        border-radius: 4px;
+        background: #fff;
+
+        color: rgba(59, 110, 55, 0.7);
+        text-align: center;
+        font-family: Noto Sans;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20.308px; /* 203.077% */
+        letter-spacing: -0.377px;
+      }
+
+      #friendsgoal {
+        margin-bottom: 15px;
+        width: 184px;
+        height: 26px;
+        padding: 6px 13px;
+        flex-shrink: 0;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background: #274a24;
+        box-sizing: border-box;
+
+        color: #fff;
+        text-align: center;
+        font-family: Noto Sans;
+        font-size: 13px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20.308px; /* 156.213% */
+        letter-spacing: -0.377px;
+        border-style: hidden;
+        position: relative;
+        top: -20px;
+      }
+
+      @media (min-width: 768px) {
+        /* Styles for desktop */
+        #example {
+          margin-bottom: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <form method="post" action="{% url 'main_goal_input' %}">
+      {% csrf_token %}
+    <div id="container">
+      <img
+      src="{%static 'img/2023herethon5.png'%}"
+      style="width: 110px; margin-bottom: 10px"
+    />
+    <img
+      src="{%static 'img/Make your own Mandalaart 🌟.png'%}"
+      style="width: 300px; margin-bottom: 45px"
+    />
+      <img src="{%static 'img/설명 1.png' %}" style="width: 280px" />
+      <img src="{%static 'img/설명 2.png'%}" style="width: 280px" />
+      <div id="example">예시 보러 가기</div>
+    </div>
+    <img
+      src="{%static 'img/Group 68.png' %}"
+      style="max-width: 360px; position: absolute; bottom: -13px"
+    />
+    <!-- <input
+      type="text"
+      id="maingoal"
+      placeholder="목표 입력하기"
+      style="width: 300px"
+    /> -->
+    {{ form.as_p }}
+    <button type="submit" value="Next">
+    <img
+      src="{% static 'img/inputbtn2.png' %}"
+      style="width: 300px; position: relative; top: 130px"
+    /></button>
+    </form>
+    <img
+      src="{% static 'img/흠냐.png' %}"
+      style="width: 300px; position: relative; top: 160px"
+    />
+    <input id="friendsgoal" />
+    <input id="friendsgoal" />
+    <input id="friendsgoal" />
+    <input id="friendsgoal" />
+    <script src="{% static 'js/mainGoal.js'%}"></script>
+  
+  </body>
+</html>

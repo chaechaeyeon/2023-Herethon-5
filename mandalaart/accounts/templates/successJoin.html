@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>successJoin</title>
+    <style>
+      #container {
+        position: relative;
+        width: 100%;
+        max-width: 1280px;
+        text-align: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0 auto;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      input {
+        margin-bottom: 15px;
+        max-width: 280px;
+        height: 40px;
+        flex-shrink: 0;
+        border-radius: 4px;
+        border: 1px solid #e5e7eb;
+        background: #fff;
+        padding: 5px 10px;
+        box-sizing: border-box;
+        width: 400px;
+      }
+      @media (min-width: 768px) {
+        /* Styles for desktop */
+        input {
+          margin: 5px auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <img
+      src="{%static 'img/2023herethon5.png'%}"
+      style="width: 110px; margin-bottom: 10px"
+    />
+    <img
+      src="{%static 'img/Make your own Mandalaart 🌟.png'%}"
+      style="width: 300px; margin-bottom: 45px"
+    />
+      <img src="{% static 'img/Rectangle 4.png' %}" style="width: 360px" />
+      <img
+        src="{% static 'img/check icon.png'%}"
+        style="position: relative; top: -180px; width: 50px"
+      />
+      <div
+        id="successJoin"
+        style="
+          position: relative;
+          color: #3b6e37;
+          text-align: center;
+          font-family: Noto Sans;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 1000;
+          line-height: 12.09px;
+          letter-spacing: -0.121px;
+          top: -150px;
+        "
+      >
+        회원가입이 완료되었습니다!
+      </div>
+      <div
+        id="letsgo"
+        style="
+          position: relative;
+          color: #3b6e37;
+          font-family: Noto Sans;
+          font-size: 10px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 12.09px; /* 120.901% */
+          letter-spacing: -0.121px;
+          top: -110px;
+        "
+      >
+        함께 만다라트 만들러 가볼까요?
+      </div>
+      <img
+        src="{% static 'img/Group 11.png' %}"
+        style="width: 360px; margin-top: -100px"
+        onclick="gotoLogin()"
+      />
+      <div
+        id="login"
+        style="
+          position: relative;
+          color: #fff;
+          text-align: center;
+          font-family: Noto Sans;
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 900;
+          line-height: 12.09px;
+          letter-spacing: -0.121px;
+          top: -30px;
+        "
+        onclick="gotoLogin()"
+      >
+      <a href="{% url 'accounts:login' %}">
+        로그인하기 </a>
+      </div>
+      <input
+        type="password"
+        id="confirmpw"
+        placeholder="Confirm Password"
+        style="opacity: 0.6; background: #fff"
+      />
+      <img
+        src="{% static 'img/joinbtn.png'%}"
+        style="width: 300px; margin-top: 15px; opacity: 0.6; background: #fff"
+      />
+    </div>
+    <script src="{% static 'js/join.js' %}"></script>
+  </body>
+</html>
