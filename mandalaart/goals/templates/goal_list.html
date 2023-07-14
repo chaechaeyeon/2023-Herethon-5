@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page</title>
+</head>
+<body>
+    <h1>Main Page</h1>
+    <h2>나의 만다라트 리스트</h2>
+    <ul>
+        {% for plan in plans %}
+            <li><a href="{% url '3x3_table' plan_id=plan.id %}">{{ plan.main_goal }}</a></li>
+        {% empty %}
+            <li>No plans available.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'main_goal_input' %}">Create New Plan</a>
+</body>
+</html>

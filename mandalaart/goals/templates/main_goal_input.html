@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Goal Input</title>
+</head>
+<body>
+    <h1>메인 목표 입력</h1>
+    <form method="post" action="{% url 'main_goal_input' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Next">
+    </form>
+</body>
+</html>
