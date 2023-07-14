@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
-from .forms import MainGoalForm, SubGoalForm, WayGoalForm
-from .models import Plan, SubGoal, WayGoal
+from .forms import MainGoalForm, SubGoalForm, WayGoalForm, CommentForm
+from .models import Plan, SubGoal, WayGoal, Comment
 import os
 from django.conf import settings
 from django.http import HttpResponse
@@ -138,4 +138,23 @@ def way_goal_input(request, plan_id, sub_goal_id):
             "way_goals": way_goals,
             "main_goal": plan.main_goal,
         },
+    )
+
+
+def comment(request, plan_id):
+    plan = Plan.objects.get(pk=plan_id)
+    comments = Comment.objects.filter(pk=plan_id)
+    form = CommentForm(request.POST)
+    if request.method == "POST":
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.plan = plan
+            comment.save()
+            return redirect("comment", plan_id)
+
+        else:
+            form = CommentForm()
+
+    return render(
+        request, "comment.html", {"plan": plan, "comments": comments, "form": form}
     )

@@ -15,4 +15,5 @@ urlpatterns = [
         views.way_goal_input,
         name="way_goal_input",
     ),
+    path("3x3_table/<int:plan_id>/comment/", views.comment, name="comment"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
