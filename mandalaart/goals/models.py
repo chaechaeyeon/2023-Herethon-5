@@ -23,7 +23,9 @@ class SubGoal(models.Model):
 class WayGoal(models.Model):
     sub = models.ForeignKey(SubGoal, on_delete=models.CASCADE)
     way_goal = models.CharField(max_length=200)
-
+    way_fre = models.IntegerField(null=True) 
+    way_memo = models.TextField()     
+    
     def __str__(self):
         return self.way_goal
 
