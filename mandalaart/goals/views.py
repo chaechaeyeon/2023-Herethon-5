@@ -15,7 +15,7 @@ import pdfkit  # `pdfkit` 라이브러리를 설치
 # 만다라트 리스트 조회
 def main_page(request):
     plans = Plan.objects.all()
-    return render(request, "goal_list.html", {"plans": plans})
+    return render(request, "mainGoal.html", {"plans": plans})
 
 
 # 메인 목표 입력
@@ -131,7 +131,7 @@ def way_goal_input(request, plan_id, sub_goal_id):
 
     return render(
         request,
-        "way_goal_input.html",
+        "detailGoal.html",
         {
             "form": form,
             "plan_id": plan_id,
@@ -189,3 +189,7 @@ def edit_way_goal(request, way_goal_id):
     return render(
         request, "edit_way_goal.html", {"form": form, "way_goal_id": way_goal_id}
     )
+
+def examplePage(request):
+    
+    return render(request, "example.html")

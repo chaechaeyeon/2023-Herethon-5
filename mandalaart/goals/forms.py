@@ -13,11 +13,13 @@ class SubGoalForm(forms.Form):
 
 class WayGoalForm(forms.ModelForm):
     way_goal = forms.CharField(widget=forms.Textarea)
+    way_fre = forms.IntegerField(min_value=0, max_value=30, label='목표 달성 빈도')
+    way_memo = forms.CharField(widget=forms.Textarea, label='메모')
 
     class Meta:
         model = WayGoal
-        fields = ["way_goal"]
-
+        fields = ['way_goal', 'way_fre', 'way_memo']
+        
 
 class CommentForm(forms.ModelForm):
     content = forms.CharField(widget=forms.Textarea)
