@@ -105,7 +105,7 @@ def three_by_three_table(request, plan_id):
 
     return render(
         request,
-        "3x3_table.html",
+        "here.html",
         {"plan": plan, "sub_goal_rows": sub_goal_rows, "main_goal": plan.main_goal},
     )
 
