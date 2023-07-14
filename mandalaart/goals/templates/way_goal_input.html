@@ -7,6 +7,59 @@
     <h1>세부 목표 입력</h1>
     <form method="post" action="{% url 'way_goal_input' plan_id=plan_id sub_goal_id=sub_goal_id %}">
         {% csrf_token %}
+        {{ formset.management_form }}
+    
+        {% for form in formset %}
+            <div class="form-row">
+                {{ form.way_goal.errors }}
+                <label for="{{ form.way_goal.id_for_label }}">Way Goal:</label>
+                {{ form.way_goal }}
+                <br>
+                
+                {{ form.way_fre.errors }}
+                <label for="{{ form.way_fre.id_for_label }}">목표 달성 빈도:</label>
+                {{ form.way_fre }}
+                <br>
+                
+                {{ form.way_memo.errors }}
+                <label for="{{ form.way_memo.id_for_label }}">메모:</label>
+                {{ form.way_memo }}
+            </div>
+        {% endfor %}
+    
+        <input type="submit" value="Save">
+    </form>
+    
+    <h2>Way Goals:</h2>
+    {% for sub_goal in sub_goals %}
+        <h3>{{ sub_goal.sub_goal }}</h3>
+        <ul>
+            {% for way_goal in sub_goal.waygoal_set.all %}
+                <li>
+                    {{ way_goal. }}
+                    <h4>{{ way_goal.way_goal }}</h4>
+                    {{ way_goal.way_memo }}
+                </li>
+            {% empty %}
+                <li>No way goals for this sub goal.</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+    
+    {% comment %} <form method="post" action="{% url 'way_goal_input' plan_id=plan_id sub_goal_id=sub_goal_id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <label for="{{ form.nums.id_for_label }}">목표 달성 빈도:</label>
+        {{ form.nums }}
+        <br>
+        <label for="{{ form.way_memo.id_for_label }}">메모:</label>
+        {{ form.way_memo }}
+        <br>
+        <input type="submit" value="Save">
+    </form> {% endcomment %}
+    
+    {% comment %} <form method="post" action="{% url 'way_goal_input' plan_id=plan_id sub_goal_id=sub_goal_id %}">
+        {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Save">
     </form>
@@ -18,6 +71,8 @@
         {% empty %}
             <li>No way goals yet.</li>
         {% endfor %}
-    </ul>
+    </ul> {% endcomment %}
 </body>
 </html>
+
+
