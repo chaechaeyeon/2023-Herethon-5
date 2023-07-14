@@ -9,7 +9,9 @@
 
     <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form.way_goal.label_tag }} {{ form.way_goal }}
+        {{ form.way_fre.label_tag }} {{ form.way_fre }}
+        {{ form.way_memo.label_tag }} {{ form.way_memo }}
         <input type="submit" value="저장">
     </form>
 
