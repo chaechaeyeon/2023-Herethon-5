@@ -14,13 +14,15 @@
         max-height: 800px;
       }
 
-      input {
+      #box1, #box2, #box3, #box4, #box5, #box6, #box7, #box8, #mainbox {
         width: 85.217px;
         height: 86.195px;
         flex-shrink: 0;
         border: hidden;
         border-radius: 5px;
         background: #fff;
+
+        display:inline-block;
 
         margin-bottom: 9px;
         color: #000;
@@ -50,8 +52,8 @@
         line-height: 31.475px;
         letter-spacing: -0.492px;
         position: relative;
-        top: -30px;
-        left: -85px;
+        left: 10px
+
       }
       #num_main {
         color: #fff;
@@ -62,9 +64,6 @@
         font-weight: 400;
         line-height: 31.475px; /* 242.119% */
         letter-spacing: -0.492px;
-        position: relative;
-        top: -30px;
-        left: -85px;
       }
       #rewrite {
         position: relative;
@@ -88,29 +87,47 @@
         text-align: center;
       }
 
-      a { 
-        align: center;
+      div a, #num_main { 
+        display: inline-block;
+        color: inherit;
         text-decoration: none;
+        position: relative;
+        width: 50px;
+        top: 30px;
+        font-family: Noto Sans;
+        font-style: normal;
+        font-weight: 400;
+        text-align: center;
       }
 
-      a:visited {
-        color: inherit;
-      }
     </style>
   </head>
   <body>
     <img src="{% static 'img/Group 101.png' %}" style="max-width: 360px" />
     <a href="{% url 'goal_edit' plan_id=plan.id %}"><img src="{% static 'img/rewrite.png' %}" id="rewrite" /></a>
     <div id="boxes123">
-      <input type="text" id="box1" /><class id="num">01
-        <a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.0.0.id %}">{{ sub_goal_rows.0.0 }}</a>
-      </class>
-      <input type="text" id="box2" /><class id="num">02</class>
-      <input type="text" id="box3" /><class id="num">03</class>
+      <div type="text" id="box1"><class id="num">01</class>
+          <a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.0.0.id %}">{{ sub_goal_rows.0.0 }}</a>
+        
+      </div>
+      
+      <div type="text" id="box2"><class id="num">02</class>
+          <a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.0.1.id %}">{{ sub_goal_rows.0.1 }}</a>
+
+      </div>
+
+      <div type="text" id="box3"><class id="num">03</class>
+          <a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.0.2.id %}">{{ sub_goal_rows.0.2 }}</a>
+
+      </div>
     </div>
+
     <div id="boxes45">
-      <input type="text" id="box4" /><class id="num">04</class>
-      <input
+      <div type="text" id="box4"><class id="num">04</class>
+          <a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.1.0.id %}">{{ sub_goal_rows.1.0 }}</a>
+
+      </div>
+      <div
         type="text"
         id="mainbox"
         style="
@@ -122,32 +139,45 @@
           font-style: normal;
           font-weight: 600;
           line-height: 17px; /* 130.769% */
-        "
-      /><class
-        id="num_main"
-        style="
-          color: #fff;
-          text-align: center;
-          font-family: Noto Sans;
-          font-size: 13px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 31.475px; /* 242.119% */
-          letter-spacing: -0.492px;
-          visibility: hidden;
-        "
-        >00</class
-      >
-      <input type="text" id="box5" /><class id="num">05</class>
+        ">
+          <class
+          id="num_main"
+          style="
+            color: #fff;
+            text-align: center;
+            font-family: Noto Sans;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 31.475px; /* 242.119% */
+            letter-spacing: -0.492px;
+          "
+          >{{ main_goal }}</class>
+      </div>
+      <div type="text" id="box5"><class id="num">05</class>
+        <a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.1.1.id %}">{{ sub_goal_rows.1.1 }}</a>
+      </div>
     </div>
+
+    
     <div id="boxes678">
-      <input type="text" id="box6" /><class id="num">06</class>
-      <input type="text" id="box7" /><class id="num">07</class>
-      <input type="text" id="box8" /><class id="num">08</class>
+      <div type="text" id="box6" /><class id="num">06</class>
+        <a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.1.2.id %}">{{ sub_goal_rows.1.2 }}</a>
+      </div>
+
+      <div type="text" id="box7" /><class id="num">07</class>
+        <a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.2.0.id %}">{{ sub_goal_rows.2.0 }}</a>
+      </div>
+
+      <div type="text" id="box8" /><class id="num">08</class>
+        <a href="{% url 'way_goal_input' plan_id=plan.id sub_goal_id=sub_goal_rows.2.1.id %}">{{ sub_goal_rows.2.1 }}</a>
+      </div>
     </div>
-    <img src="{% static 'img/Frame 13.png' %}" id="frame" /> <!-- 공유하기 -->
+
+    <img src="{% static 'img/Frame 14.png' %}" id="frame" /> <!-- 공유하기 -->
     <img src="{% static 'img/Frame 12.png' %}" id="frame" />    <!-- 저장하기 -->
-    <a href="{% url 'comment' plan_id=plan.id %}"><img src="{% static 'img/Frame 11.png' %}" id="frame" /></a><!-- 댓글쓰기 -->
+    <a href="{% url 'comment' plan_id=plan.id %}"><img src="{% static 'img/Frame 13.png' %}" id="frame" /></a><!-- 댓글쓰기 -->
     <script src="{% static 'js/here.js' %}"></script>
   </body>
 </html>
+C:\LEEKYUMIN\likelion\2023 여기톤\2023-Herethon-5\2023-Herethon-5\mandalaart\static\img\Frame 12.png
