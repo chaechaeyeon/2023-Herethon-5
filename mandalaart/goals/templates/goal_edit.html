@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Goals</title>
+</head>
+<body>
+    <h1>목표 수정하기</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="main_goal">Main Goal:</label>
+        <input type="text" name="main_goal" value="{{ main_goal }}"><br><br>
+        {% for sub_goal in sub_goals %}
+            <label for="sub_goal{{ forloop.counter }}">Sub Goal {{ forloop.counter }}:</label>
+            <input type="text" name="sub_goal{{ forloop.counter }}" value="{{ sub_goal.sub_goal }}"><br>
+        {% endfor %}
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>
