@@ -10,9 +10,6 @@ urlpatterns = [
     path("sub_goal_input/<int:plan_id>/", views.sub_goal_input, name="sub_goal_input"),
     path("goal_edit/<int:plan_id>/", views.goal_edit, name="goal_edit"),
     path("3x3_table/<int:plan_id>/", views.three_by_three_table, name="3x3_table"),
-    path(
-        "way_goal_input/<int:plan_id>/<int:sub_goal_id>/",
-        views.way_goal_input,
-        name="way_goal_input",
-    ),
+    path("way_goal_input/<int:plan_id>/<int:sub_goal_id>/", views.way_goal_input, name="way_goal_input"),
+    path("edit_way_goal/<int:way_goal_id>/", views.edit_way_goal, name="edit_way_goal"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
