@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Way Goal Input</title>
+</head>
+<body>
+      <h1>댓글 입력</h1>
+      <form method="POST" action ="{% url 'comment' plan_id=plan.id %}">
+        {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Save">
+      </form>
+    <h2>Comment:</h2>
+    <ul>
+        {% if plan.comment_set.exists %}
+          {% for comment in plan.comment_set.iterator %}
+          <li>{{ comment.content }} - {{comment.created_at}} {{comment.modified_at}}</li>
+          {% endfor %}
+        
+        {% else %}
+            <li>No comment yet.</li>
+        {% endif %}
+      
+    </ul>
+</body>
+</html>
